@@ -1,0 +1,5 @@
+# house of IO
+
+这个主要还是使用tcache perthread corruption中的方法来实现
+
+但是主要的区别就是要申请出perthread后还是要把他free掉使得这个chunk进入
