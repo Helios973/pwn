@@ -1,2 +1,8 @@
 # io_file
 
+io_file说白了就是glibc中输入输出的集合链接函数，这个攻击手法主要的原因是因为在glibc2.31以后的堆块他对malloc-hook和free-hook等各种数据hook点都有了一些高级的检查因此io_file就会成为我们主要的工具手法
+
+而这个io-file主要的用处就是减少系统调用的次数，同时在heap中也是使用这个思想
+
+
+
