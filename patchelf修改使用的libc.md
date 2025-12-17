@@ -54,6 +54,8 @@ patchelf --set-interpreter /home/ahh/Tools/glibc-all-in-one/libs/2.23-0ubuntu11.
 
 ```text
 patchelf --set-rpath /home/ahh/Tools/glibc-all-in-one/libs/2.23-0ubuntu11.3_i386/ ./axb_2019_fmt32
+patchelf --replace-needed libc.so.6 /home/fofa/MINI_pwn/libc.so.6 ./chal
+
 ```
 
 这样就设置完成了，我们再通过ldd看一下：
